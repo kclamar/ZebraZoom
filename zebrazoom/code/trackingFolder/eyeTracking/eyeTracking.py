@@ -35,7 +35,7 @@ def eyeTracking(animalId, i, firstFrame, frame, hyperparameters, thresh1, tracki
   maxContour1 = 0
   maxArea2    = 0 # Smallest of the two contours
   maxContour2 = 0
-  contours, hierarchy = cv2.findContours(threshEye, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+  contours, hierarchy = cv2.findContours(threshEye, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
   for contour in contours:
     area = cv2.contourArea(contour)
     M = cv2.moments(contour)
@@ -81,7 +81,7 @@ def eyeTracking(animalId, i, firstFrame, frame, hyperparameters, thresh1, tracki
   threshEye2[len(threshEye2)-1,:] = 255
   threshEye2[:,0] = 255
   threshEye2[:,len(threshEye2[0])-1] = 255
-  contours, hierarchy = cv2.findContours(threshEye2, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+  contours, hierarchy = cv2.findContours(threshEye2, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
   for contour in contours:
     dist1 = cv2.pointPolygonTest(contour, (eye1X, eye1Y), True)
     dist2 = cv2.pointPolygonTest(contour, (eye2X, eye2Y), True)
@@ -128,7 +128,7 @@ def eyeTracking(animalId, i, firstFrame, frame, hyperparameters, thresh1, tracki
       eyeY[idx] = int(M['m01']/M['m00'])
     if type(contour) != int and len(contour) >= 3:
       if len(contour) >= 5:
-        ellipse = cv2.fitEllipse(contour)
+        ellipse = cv2.fitEllipse(cv2.convexHull(contour))
         angle1 = ellipse[2] * (math.pi / 180) + (math.pi / 2)
       else:
         print("problem with eye angle here, not enough points in the contour to use fitEllipse")
