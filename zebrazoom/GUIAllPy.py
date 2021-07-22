@@ -164,8 +164,8 @@ class SampleApp(tk.Tk):
     def chooseGeneralExperiment(self, controller, freeZebra, headEmbZebra, drosophilia, rodent, other, freeZebra2):
         configFilePrepareFunctions.chooseGeneralExperiment(self, controller, freeZebra, headEmbZebra, drosophilia, rodent, other, freeZebra2)
         
-    def wellOrganisation(self, controller, circular, rectangular, roi, other, multipleROIs):
-        configFilePrepareFunctions.wellOrganisation(self, controller, circular, rectangular, roi, other, multipleROIs)
+    def wellOrganisation(self, controller, circular, rectangular, roi, other, multipleROIs, groupSameSizeAndShapeEquallySpacedWells):
+        configFilePrepareFunctions.wellOrganisation(self, controller, circular, rectangular, roi, other, multipleROIs, groupSameSizeAndShapeEquallySpacedWells)
 
     def regionsOfInterest(self, controller, nbwells):
         configFilePrepareFunctions.regionsOfInterest(self, controller, nbwells)
@@ -225,8 +225,8 @@ optionBackgroundExtractionOption):
     def chooseExperimentOrganizationExcel(self, controller):
       dataAnalysisGUIFunctions.chooseExperimentOrganizationExcel(self, controller)
   
-    def populationComparison(self, controller, BoutDuration, TotalDistance, Speed, NumberOfOscillations, meanTBF, maxAmplitude):
-      dataAnalysisGUIFunctions.populationComparison(self, controller, BoutDuration, TotalDistance, Speed, NumberOfOscillations, meanTBF, maxAmplitude)
+    def populationComparison(self, controller, BoutDuration, TotalDistance, Speed, NumberOfOscillations, meanTBF, maxAmplitude, minNbBendForBoutDetect, discard, keep):
+      dataAnalysisGUIFunctions.populationComparison(self, controller, BoutDuration, TotalDistance, Speed, NumberOfOscillations, meanTBF, maxAmplitude, minNbBendForBoutDetect, discard, keep)
       
     def boutClustering(self, controller, nbClustersToFind, FreelySwimming, HeadEmbeded):
       dataAnalysisGUIFunctions.boutClustering(self, controller, nbClustersToFind, FreelySwimming, HeadEmbeded)

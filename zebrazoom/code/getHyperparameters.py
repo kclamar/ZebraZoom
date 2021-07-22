@@ -361,6 +361,12 @@ def getHyperparameters(configFile, videoName, videoPath, argv):
   
   hyperparameters["videoFPS"] = getConfig(config, "videoFPS", videoPath)
   
+  hyperparameters["groupOfMultipleSameSizeAndShapeEquallySpacedWells"] = getConfig(config, "groupOfMultipleSameSizeAndShapeEquallySpacedWells", videoPath)
+  
+  hyperparameters["fasterMultiprocessing"] = getConfig(config, "fasterMultiprocessing", videoPath)
+  
+  hyperparameters["copyOriginalVideoToOutputFolderForValidation"] = getConfig(config, "copyOriginalVideoToOutputFolderForValidation", videoPath)
+  
   
   if len(argv) > 5 and not(argv[0] == "getTailExtremityFirstFrame"):
     i = 5
@@ -370,11 +376,14 @@ def getHyperparameters(configFile, videoName, videoPath, argv):
       if not(argv[i] in ["debugPauseBetweenTrackAndParamExtract", "outputFolder", "coverPortionForHeadDetect", "freeSwimmingTailTrackingMethod", "findContourPrecision", "headingCalculationMethod", "additionalOutputFolder"]):
         try:
           hyperparameters[argv[i]] = int(argv[i+1])
+          config[argv[i]]          = int(argv[i+1])
         except:
           hyperparameters[argv[i]] = float(argv[i+1])
+          config[argv[i]]          = float(argv[i+1])
         
       else:
         hyperparameters[argv[i]] = argv[i+1]
+        config[argv[i]]          = argv[i+1]
       
       i = i + 2
   
@@ -395,7 +404,7 @@ def getHyperparameters(configFile, videoName, videoPath, argv):
     # if hyperparameters["lastFrame"] - hyperparameters["firstFrame"] > limitNbFrames:
       # hyperparameters["lastFrame"] = int(hyperparameters["firstFrame"]) + limitNbFrames
   
-  return hyperparameters
+  return [hyperparameters, config]
   
   
 def getHyperparametersSimple(configTemp):
